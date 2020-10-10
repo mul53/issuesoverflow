@@ -1,6 +1,5 @@
 const { Octokit } = require("@octokit/core");
 
-const { buildQuery } = require("../utils");
 const { LABELS } = require("../constants");
 
 const octokit = new Octokit();
