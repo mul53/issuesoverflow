@@ -6,7 +6,7 @@ const { sortDateDesc, filterFalsy } = require("../../utils");
 
 const index = async (req, res) => {
   try {
-    const { pageParam } = req.params;
+    const { page: pageParam } = req.query;
     const page = pageParam ? pageParam : 1;
 
     const response = await githubService.fetchIssues();

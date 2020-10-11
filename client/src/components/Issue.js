@@ -36,7 +36,7 @@ const Issue = ({ issue }) => {
             >
               {timeAgo(created_at)}
             </Heading>
-            <Button renderAs="a" href={html_url} target="_blank">
+            <Button renderAs="a" href={html_url} target="_blank" className="is-primary">
               View Issue
             </Button>
           </Content>

@@ -45,7 +45,7 @@ const IssuesList = () => {
         marginPagesDisplayed={2}
         pageRangeDisplayed={5}
         onPageChange={handlePageClick}
-        containerClassName={"pagination"}
+        containerClassName={"pagination is-centered"}
         subContainerClassName={"pages pagination"}
         activeClassName={"active"}
       />
