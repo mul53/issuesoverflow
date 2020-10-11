@@ -4,6 +4,9 @@ const sortDateDesc = (a, b) => {
   return dateB - dateA;
 };
 
+const filterFalsy = (array) => array.filter(Boolean);
+
 module.exports = {
   sortDateDesc,
+  filterFalsy,
 };
