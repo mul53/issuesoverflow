@@ -21,7 +21,8 @@
     "morgan": "^1.10.0",
     "paginate-array": "^2.1.0",
     "react-bulma-components": "^3.4.0",
-    "react-paginate": "^6.5.0"
+    "react-paginate": "^6.5.0",
+    "react-spinners": "^0.9.0"
   },
   "devDependencies": {
     "@babel/core": "^7.6.0",
