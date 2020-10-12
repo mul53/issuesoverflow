@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Columns } from "react-bulma-components";
+import { Columns, Form } from "react-bulma-components";
 import Paginate from "react-paginate";
 import { css } from "@emotion/core";
 import ClipLoader from "react-spinners/ClipLoader";
+import FilterForm from './Form';
 
 import Issue from "./Issue";
 import { fetchIssues } from "../services/issuesService";
@@ -42,6 +43,9 @@ const IssuesList = () => {
 
   return (
     <ul>
+      <FilterForm>
+
+      </FilterForm>
       <Columns>
         {issues.map((issue) => (
           <Columns.Column size={4} mobile={{ size: 12 }}>
