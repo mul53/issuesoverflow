@@ -1,5 +1,5 @@
 import React from "react";
-import { Navbar as Nav } from "react-bulma-components";
+import { Navbar as Nav, Heading } from "react-bulma-components";
 
 const Navbar = () => {
   return (
@@ -7,7 +7,9 @@ const Navbar = () => {
       <Nav color="primary">
         <Nav.Brand>
           <Nav.Item renderAs="a" href="#">
-            IssuesOverflow
+            <Heading style={{ color: "white" }} size={4}>
+              IssueOverflow
+            </Heading>
           </Nav.Item>
         </Nav.Brand>
       </Nav>

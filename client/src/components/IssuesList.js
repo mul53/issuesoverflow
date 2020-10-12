@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Columns, Form } from "react-bulma-components";
+import { Columns, Loader } from "react-bulma-components";
 import Paginate from "react-paginate";
 import { css } from "@emotion/core";
-import ClipLoader from "react-spinners/ClipLoader";
-import FilterForm from './Form';
 
 import Issue from "./Issue";
 import { fetchIssues } from "../services/issuesService";
@@ -11,16 +9,16 @@ import { fetchIssues } from "../services/issuesService";
 const IssuesList = () => {
   const [issues, setIssues] = useState([]);
   const [pageCount, setPageCount] = useState(0);
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
   const override = css`
-  display: block;
-  margin: 0 auto;
-  border-color: red;
-  z-index:99999;
-`;
- 
+    display: block;
+    margin: 0 auto;
+    border-color: red;
+    z-index: 99999;
+  `;
+
   useEffect(() => {
-    setLoading(true)
+    setLoading(true);
     fetchIssues()
       .then((data) => data.json())
       .then((data) => {
@@ -28,7 +26,7 @@ const IssuesList = () => {
         setIssues(data.data);
         setLoading(false);
       });
-  }, [pageCount]);
+  }, []);
 
   const handlePageClick = ({ selected }) => {
     setLoading(true);
@@ -42,16 +40,19 @@ const IssuesList = () => {
   };
 
   return (
-    <ul>
-      <FilterForm>
-
-      </FilterForm>
+    <ul style={{ marginTop: "40px" }}>
       <Columns>
-        {issues.map((issue) => (
-          <Columns.Column size={4} mobile={{ size: 12 }}>
-            <Issue  issue={issue} />
-          </Columns.Column>
-        ))}
+        {loading ? (
+          <div className="loader-wrapper">
+            <Loader className="loader-override" />
+          </div>
+        ) : (
+          issues.map((issue) => (
+            <Columns.Column size={4} mobile={{ size: 12 }}>
+              <Issue issue={issue} />
+            </Columns.Column>
+          ))
+        )}
       </Columns>
       <Paginate
         previousLabel={"previous"}
@@ -66,14 +67,6 @@ const IssuesList = () => {
         subContainerClassName={"pages pagination"}
         activeClassName={"active"}
       />
-      <div className="sweet-loading is-center">
-        <ClipLoader
-          css={override}
-          size={150}
-          color={"#123abc"}
-          loading={loading}
-        />
-      </div>
     </ul>
   );
 };

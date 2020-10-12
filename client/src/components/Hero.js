@@ -6,7 +6,10 @@ const Hero = () => (
     <BulmaHero color="primary" size="medium">
       <BulmaHero.Body>
         <Container>
-          <Heading>Hero Title Primary</Heading>
+          <Heading>Welcome to IssueOveflow</Heading>
+          <Heading subtitle size={6}>
+            Where software engineers find new exciting issues to contribute to
+          </Heading>
         </Container>
       </BulmaHero.Body>
     </BulmaHero>

@@ -1,0 +1,17 @@
+.pagination {
+  justify-content: center;
+}
+
+.pagination li:not(:last-child) {
+  margin-right: 5px;
+}
+
+.loader-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.loader-override {
+  width: 100px;
+  height: 100px;
+}

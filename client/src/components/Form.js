@@ -1,48 +1,44 @@
 import React, { useState } from "react";
 import { Form, Button } from "react-bulma-components";
+import qs from "querystring";
+
 const { Input, Field, Control, Label, Select } = Form;
-import { fetchORGRepos } from "../services/issuesService";
 
 const FilterForm = () => {
-  const [form, setForm] = useState({ ORG: '', repo: '' });
-  const update = (({ target }) => setForm({ ...form, [target.name]: target.value }))
+  const [lang, setLang] = useState("");
 
-  let options = [];
-  const getOrganisation = () =>{
-    options = fetchORGRepos(form.ORG)
-            .then(data =>{
-              console.log(data, form.ORG)
-              data.map(item =>{
-                return { label: item.name.label, value: item.name.value }
-              });
-            })
-        }
-  
+  const update = (value) => {
+    setLang(value);
+    addParam("lang", value);
+  };
+
+  const addParam = (key, value) => {
+    const queryParams = qs.parse(location.search);
+    queryParams[key] = value;
+    location.search = qs.stringify(queryParams);
+  };
+
+  let options = ["JavaScript", "Python", "Java", "Go"];
+
   return (
     <>
-      <Field>
+      <Field style={{ marginTop: "1rem" }}>
+        <Label>Language</Label>
         <Control>
-          <Label>Organisation</Label>
-          <Input  placeholder="Enter orgs Name" name="ORG" value={form.ORG} onChange={update} onBlur={getOrganisation} />
-        </Control>
-      </Field>
-      <Field>
-        <Control>
-          <Label>Repo</Label>
           <Select
-           placeholder="Enter repo Name"  
-           name="repo" 
-           type="text" 
-           onChange={update}
-           options = {options}
-           />
+            onChange={(e) => update(e.target.value)}
+            name="lang"
+            value={lang}
+          >
+            <option value="all">All</option>
+            {options.map((option) => (
+              <option value={option}>{option}</option>
+            ))}
+          </Select>
         </Control>
       </Field>
-      <Button.Group>
-        <Button fullwidth rounded color="primary" onClick={() => console.log(form)}>Search</Button>
-      </Button.Group>
     </>
   );
-}
+};
 
 export default FilterForm;
